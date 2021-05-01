@@ -5,7 +5,7 @@ const activityCtrl = require("../controller/activites");
 
 router
   .route("/")
-  .get(activityCtrl.getAllActivities)
+  // .get(activityCtrl.getAllActivities)
   .post(activityCtrl.createActivity);
 
   module.exports = router;
