@@ -5,7 +5,13 @@ const activityCtrl = require("../controller/activites");
 
 router
   .route("/")
-  // .get(activityCtrl.getAllActivities)
+  .get(activityCtrl.getAllActivities)
   .post(activityCtrl.createActivity);
 
-  module.exports = router;
+router
+  .route("/:id")
+  .get(activityCtrl.getActivity)
+  .patch(activityCtrl.updateActivity)
+  .delete(activityCtrl.deleteActivity);
+
+module.exports = router;
