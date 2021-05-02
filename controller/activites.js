@@ -1,8 +1,14 @@
 const Activity = require("../models/activity");
+const SearchFeatures = require("../utils/searchFeatures");
 
 const getAllActivities = async (req, res) => {
   try {
-    const activities = await Activity.find();
+    const features = new SearchFeatures(Activity.find(), req.query)
+      .filter()
+      .sort()
+      .paginate();
+
+    const activities = await features.query;
     res.status(200).json({
       status: "success",
       results: activities.length,
