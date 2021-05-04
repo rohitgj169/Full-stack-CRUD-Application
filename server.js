@@ -10,8 +10,9 @@ require("./config/database");
 const app = express();
 
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 const activitesRouter = require("./routes/activites");
+const userRouter = require("./routes/users");
+const reviewsRouter = require("./routes/reviews");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -24,8 +25,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/activities", activitesRouter);
+app.use("/users", userRouter);
+app.use("/reviews", reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

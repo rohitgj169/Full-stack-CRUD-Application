@@ -1,20 +1,12 @@
 const Activity = require("../models/activity");
-const SearchFeatures = require("../utils/searchFeatures");
 
 const getAllActivities = async (req, res) => {
   try {
-    const features = new SearchFeatures(Activity.find(), req.query)
-      .filter()
-      .sort()
-      .paginate();
-
-    const activities = await features.query;
-    res.status(200).json({
-      status: "success",
+    const activities = await Activity.find();
+    console.log(activities);
+    res.status(200).render('activites/show',{
       results: activities.length,
-      data: {
-        activities,
-      },
+      activities,
     });
   } catch (err) {
     res.status(404).json({
@@ -26,7 +18,7 @@ const getAllActivities = async (req, res) => {
 
 const getActivity = async (req, res) => {
   try {
-    const activity = await Activity.findById(req.params.id);
+    const activity = await Activity.findById(req.params.id).populate("reviews");
     res.status(200).json({
       status: "success",
       data: {
@@ -93,10 +85,15 @@ const deleteActivity = async (req, res) => {
   }
 };
 
+const newActivity = (req, res) => {
+  res.render("activites/new");
+};
+
 module.exports = {
   getAllActivities,
   getActivity,
   createActivity,
   updateActivity,
   deleteActivity,
+  newActivity,
 };
