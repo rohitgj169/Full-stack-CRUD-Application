@@ -5,12 +5,12 @@ const activitySchema = new Schema({
   title: {
     type: String,
     trim: true,
-    required: [true, "Quest needs a title"],
+    required: [true, "Activity needs a title"],
   },
   description: {
     type: String,
     trim: true,
-    required: [true, "Quest needs a description"],
+    required: [true, "Activity needs a description"],
   },
   members: [
     {

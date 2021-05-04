@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<blockquote class="orange-accent-2">
+    <h4>Enter Details</h4>
+  </blockquote>
+    <div class="row ">
+      <div class="col s12 l8">
+    <form action="/activities" method="POST">
+      <label for="title">Activity Title</label>
+      <input type="text" name="title" />
+      <br />
+      <label for="description">Description:</label>
+      <textarea id="textarea1" class="materialize-textarea" name="description"></textarea>
+      <br /><br /><br />
+      <button class="btn waves-effect waves-light blue-grey darken-4 orange-text text-accent-2" type="submit" name="action">Add
+        <i class="material-icons right ">new_label</i>
+      </button>
+      <!-- <input type="submit" value="Post Activity" /> -->
+    </form>
+  </div>
+  </div>
+
+  <%- include('../partials/footer') %>

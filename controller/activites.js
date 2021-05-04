@@ -3,8 +3,7 @@ const Activity = require("../models/activity");
 const getAllActivities = async (req, res) => {
   try {
     const activities = await Activity.find();
-    console.log(activities);
-    res.status(200).render('activites/show',{
+    res.status(200).render("activities/index", {
       results: activities.length,
       activities,
     });
@@ -19,11 +18,8 @@ const getAllActivities = async (req, res) => {
 const getActivity = async (req, res) => {
   try {
     const activity = await Activity.findById(req.params.id).populate("reviews");
-    res.status(200).json({
-      status: "success",
-      data: {
-        activity,
-      },
+    res.status(200).render("activities/show", {
+      activity,
     });
   } catch (err) {
     res.status(404).json({
@@ -36,12 +32,8 @@ const getActivity = async (req, res) => {
 const createActivity = async (req, res) => {
   try {
     const newActivity = await Activity.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: {
-        activity: newActivity,
-      },
-    });
+    const activity = await newActivity.save();
+    res.status(201).redirect("/activities");
   } catch (err) {
     res.status(400).json({
       status: "fail",
@@ -56,12 +48,7 @@ const updateActivity = async (req, res) => {
       new: true,
       runValidators: true,
     });
-    res.status(200).json({
-      status: "success",
-      data: {
-        activity,
-      },
-    });
+    res.status(200).redirect("/activities");
   } catch (err) {
     res.status(400).json({
       status: "fail",
@@ -73,10 +60,7 @@ const updateActivity = async (req, res) => {
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.params.id);
-    res.status(204).json({
-      status: "success",
-      data: null,
-    });
+    res.status(204).redirect("/activities");
   } catch (err) {
     res.status(400).json({
       status: "fail",
@@ -86,7 +70,14 @@ const deleteActivity = async (req, res) => {
 };
 
 const newActivity = (req, res) => {
-  res.render("activites/new");
+  res.render("activities/new");
+};
+
+const editActivity = async (req, res) => {
+  const activity = await Activity.findById(req.params.id);
+  res.render("activities/edit", {
+    activity,
+  });
 };
 
 module.exports = {
@@ -96,4 +87,5 @@ module.exports = {
   updateActivity,
   deleteActivity,
   newActivity,
+  editActivity,
 };

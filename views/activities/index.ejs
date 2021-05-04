@@ -1,20 +1,21 @@
 <%- include('../partials/header') %>
-
+<h2 class="center-align">Activites</h2>
 <% activities.forEach((act) =>{%>
 <div class="container">
   <div class="row" id="activity-container">
-    <div class="col s12 l6">
+    <div class="col s12">
       <div class="card blue-grey darken-4 hoverable">
         <div class="card-content white-text">
           <span class="card-title"><%=act.title%></span>
           <p><%=act.description%></p>
         </div>
-        <div class="card-action">
-          <a href="#">Show More</a>
+        <div class="card-action right-align">
+          <a href="/activities/<%=act._id%>">Show More</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 <% });%>
+<a href="/activities/new" class="btn-floating pulse btn-large waves-effect waves-light orange right add-button"><i class="material-icons">add</i></a>
 <%- include('../partials/footer') %>

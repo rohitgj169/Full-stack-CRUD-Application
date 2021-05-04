@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col s12"><h2><%=activity.title%></h2></div>
+    <div class="col s12">
+      <p class="flow-text">Activity Details</p>
+      <p></p>
+      <p class="flow-text"><%=activity.description%></p>
+    </div>
+  </div>
+  <div class="row">
+    <form action="/activities/<%=activity._id%>?_method=DELETE" method="POST">
+      <a
+        href="/activities/<%=activity._id%>/edit"
+        class="waves-effect waves-light btn"
+        >Edit</a
+      >
+      <button class="btn waves-effect waves-light" type="submit" name="delete">
+        Delete<i class="material-icons right">delete</i>
+      </button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
