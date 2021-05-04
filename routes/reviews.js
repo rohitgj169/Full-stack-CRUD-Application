@@ -3,9 +3,6 @@ const reviewCtrl = require("../controller/reviews");
 
 const router = express.Router();
 
-router
-  .route("/")
-  .get(reviewCtrl.getAllReviews)
-  .post(reviewCtrl.createReview);
+router.get()
 
 module.exports = router;
