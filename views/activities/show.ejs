@@ -21,6 +21,35 @@
       </button>
     </form>
   </div>
+</div><br /><br /><br />
+<div class="container">
+  <div class="row">
+    <form method="POST"
+    action="/activities/<%= activity._id %>/comments" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+          <label for="textarea1">Enter Comment</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+  <section class="section comment-section">
+  <ul class="collection with-header">
+    <li class="collection-header"><h5>Comments</h5></li>
+    <%activity.comments.forEach(el => {%>
+      <form action="/comments/<%=el._id %>?_method=DELETE" method="POST">
+      <li class="collection-item"><%=el.comment%>
+        <button class="btn-flat white red-text right-align comment-delete-button" type="submit" name="delete-action">
+          <i class="material-icons right">close</i>
+        </button>
+      </form>
+      </li>
+    <%});%>
+  </ul>
+</section>
 </div>
-
 <%- include('../partials/footer') %>

@@ -1,27 +1,28 @@
 <%- include('../partials/header') %>
+
 <blockquote class="orange-accent-2">
-  <h4>Edit Details</h4>
+  <h4>Enter Details</h4>
 </blockquote>
 <div class="row">
   <div class="col s12 l8">
-    <form action="/activities/<%=activity._id%>?_method=PUT" method="POST">
-      <label for="title">Activity Title</label>
-      <input type="text" name="title" />
+    <form action="/users" method="POST">
+      <label for="name">Person Name</label>
+      <input type="text" name="name" />
       <br />
-      <label for="description">Description:</label>
+      <label for="age">Age</label>
       <textarea
         id="textarea1"
         class="materialize-textarea"
-        name="description"
+        name="age"
       ></textarea>
       <br /><br /><br />
       <button
         class="btn waves-effect waves-light blue-grey darken-4 orange-text text-accent-2"
         type="submit"
-        name="edit"
+        name="action"
       >
-        Edit
-        <i class="material-icons right">edit</i>
+        Add
+        <i class="material-icons right">new_label</i>
       </button>
     </form>
   </div>

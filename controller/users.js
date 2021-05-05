@@ -1,14 +1,10 @@
 const User = require("../models/user");
-const Activity = require("../models/activity");
 
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.status(200).json({
-      status: "success",
-      data: {
-        users,
-      },
+    res.status(200).render("users/index", {
+      users,
     });
   } catch (err) {
     res.status(404).json({
@@ -21,12 +17,8 @@ const getAllUsers = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const newUser = await User.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: {
-        user: newUser,
-      },
-    });
+    await newUser.save();
+    res.status(201).redirect("/users");
   } catch (err) {
     res.status(400).json({
       status: "fail",
@@ -35,12 +27,12 @@ const createUser = async (req, res) => {
   }
 };
 
-const addToParticipants = async(req,res) =>{
-
-}
+const newUser = (req, res) => {
+  res.render("users/new");
+};
 
 module.exports = {
   getAllUsers,
   createUser,
-  // addToParticipants,
+  newUser,
 };

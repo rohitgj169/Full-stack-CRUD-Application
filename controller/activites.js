@@ -17,7 +17,7 @@ const getAllActivities = async (req, res) => {
 
 const getActivity = async (req, res) => {
   try {
-    const activity = await Activity.findById(req.params.id).populate("reviews");
+    const activity = await Activity.findById(req.params.id);
     res.status(200).render("activities/show", {
       activity,
     });

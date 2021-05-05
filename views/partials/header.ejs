@@ -20,11 +20,19 @@
     <nav>
       <div class="nav-wrapper blue-grey darken-4">
         <a href="#" class="brand-logo orange-text text-accent-2">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-small-only ">
-          <li><a href="/activities" class="orange-text text-accent-2">All Activities</a></li>
-          <li><a href="/user/new" class="orange-text text-accent-2">Add User</a></li>
-        </ul>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/activities">Activities</a></li>
+        <li><a href="/users">Users</a></li>
+      </ul>
       </div>
     </nav>
-
-    <main>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="/activities">Activities</a></li>
+      <li><a href="/users">People</a></li>
+      <li><a href="/activities/new">Add Activity</a></li>
+      <li><a href="/users/new">Add People</a></li>
+    </ul>
+    <main></main>
+  </body>
+</html>
