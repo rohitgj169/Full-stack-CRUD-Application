@@ -4,12 +4,23 @@
   <div class="container">
     <ul class="collection with-header">
       <li class="collection-header"><h4>People</h4></li>
+      <% users.forEach(user => { %>
+        <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+        <li class="collection-item flow-text"><i class="material-icons md-36">account_circle</i><%=user.name%>
+            <button class="btn-flat waves-effect waves-light right" type="submit" name="action">
+              <i class="material-icons right">delete</i>
+            </button>
+        </form>
+        </li>
+        <%});%>
     </ul>
   </div>
 </section>
+<div class="container">
 <a
   href="/users/new"
-  class="btn-floating btn-large waves-effect waves-light orange right add-button"
-  ><i class="material-icons">add</i></a
+  class="btn-floating btn-large waves-effect waves-light orange right"
+  ><i class="material-icons">person_add</i></a
 >
+</div>
 <%- include('../partials/footer') %>

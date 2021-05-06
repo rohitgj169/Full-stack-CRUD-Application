@@ -31,8 +31,21 @@ const newUser = (req, res) => {
   res.render("users/new");
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    res.status(204).redirect("/users");
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllUsers,
   createUser,
   newUser,
+  deleteUser,
 };

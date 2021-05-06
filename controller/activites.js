@@ -1,4 +1,5 @@
 const Activity = require("../models/activity");
+const User = require("../models/user");
 
 const getAllActivities = async (req, res) => {
   try {
@@ -17,14 +18,16 @@ const getAllActivities = async (req, res) => {
 
 const getActivity = async (req, res) => {
   try {
-    const activity = await Activity.findById(req.params.id);
+    const activity = await Activity.findById(req.params.id).populate("members");
+    const users = await User.find({}).where("_id").nin(activity.members);
     res.status(200).render("activities/show", {
       activity,
+      users,
     });
   } catch (err) {
     res.status(404).json({
       status: "fail",
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -74,10 +77,50 @@ const newActivity = (req, res) => {
 };
 
 const editActivity = async (req, res) => {
-  const activity = await Activity.findById(req.params.id);
-  res.render("activities/edit", {
-    activity,
-  });
+  try {
+    const activity = await Activity.findById(req.params.id);
+    res.render("activities/edit", {
+      activity,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+const addToActivity = async (req, res) => {
+  try {
+    let activity = await Activity.findById(req.params.id);
+    activity.members.push(req.body.userId);
+    await activity.save();
+    res.status(200).redirect(`/activities/${activity._id}`);
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+const deleteFromActivity = async (req, res) => {
+  try {
+    const activity = await Activity.findById(req.params.id);
+    const idx = activity.members.indexOf(req.params.userId);
+    if (idx > -1) {
+      activity.members.splice(idx, 1);
+    } else {
+      throw new Error("User not found in activity");
+    }
+    await activity.save();
+    res.status(204).redirect(`/activities/${activity._id}`);
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
 };
 
 module.exports = {
@@ -88,4 +131,6 @@ module.exports = {
   deleteActivity,
   newActivity,
   editActivity,
+  addToActivity,
+  deleteFromActivity,
 };
