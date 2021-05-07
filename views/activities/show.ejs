@@ -1,9 +1,16 @@
 <%- include('../partials/header') %>
 
 <section class="section">
+  
   <div class="col s12">
     <h4 class="center-align blue-grey darken-3 orange-text text-accent-2"><%=activity.title%></h4>
   </div>
+ 
+  <div class="col s12">
+      <p class="center-align blue-grey darken-2 orange-text  text-accent-2"><%=activity.date.toLocaleString('en-us', {day:'numeric', month: 'long', year: 'numeric'})%>
+      <p>
+  </div>
+ 
 </section>
 
 <section class="section">
@@ -13,6 +20,7 @@
         <p class="flow-text"><%=activity.description%></p>
       </div>
     </div>
+    
     <div class="row"> 
       <form action="/activities/<%=activity._id%>?_method=DELETE" method="POST">
       <a

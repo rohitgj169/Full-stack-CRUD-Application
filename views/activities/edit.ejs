@@ -10,6 +10,9 @@
       <label for="title">Task Title</label>
       <input type="text" name="title" value="<%=activity.title%>" />
       <br />
+      <label for="date">Due Date</label>
+      <input type="text" class="datepicker" name="date">
+      <br />
       <label for="description">Description:</label>
       <textarea
         class="materialize-textarea"
@@ -28,4 +31,4 @@
   </div>
 </div>
 
-<%- include('../partials/footer') %>
+<%- include('../partials/newactivityfooter') %>
