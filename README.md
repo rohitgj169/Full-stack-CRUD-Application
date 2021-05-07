@@ -7,6 +7,7 @@ A simple Task Scheduler. Create/Assign Tasks.
 
 ### **Technologies Used**
 
+- Materialize CSS
 - Node.js
 - Express
 - MongoDB
@@ -20,3 +21,4 @@ A simple Task Scheduler. Create/Assign Tasks.
 
 - User Login
 - Search Functionality
+- Add Image Functionality
