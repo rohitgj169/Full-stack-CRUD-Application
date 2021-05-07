@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 const getAllActivities = async (req, res) => {
   try {
-    const activities = await Activity.find();
+    const activities = await Activity.find().sort('date');
     res.status(200).render("activities/index", {
       results: activities.length,
       activities,
@@ -38,10 +38,7 @@ const createActivity = async (req, res) => {
     const activity = await newActivity.save();
     res.status(201).redirect("/activities");
   } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
+    res.status(400).redirect('/activities');
   }
 };
 

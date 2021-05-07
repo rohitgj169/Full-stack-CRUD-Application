@@ -6,7 +6,6 @@ const userSchema = new Schema({
     type: String,
     required: [true, "User must have a name"],
   },
-  age: Number,
 });
 
 module.exports = mongoose.model("User", userSchema);

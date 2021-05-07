@@ -11,9 +11,6 @@ const commentSchema = new Schema(
       ref: "Activity",
     },
   },
-  {
-    timestamps: true,
-  }
 );
 
 const activitySchema = new Schema({

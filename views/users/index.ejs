@@ -8,7 +8,7 @@
         <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
         <li class="collection-item flow-text"><i class="material-icons md-36">account_circle</i><%=user.name%>
             <button class="btn-flat waves-effect waves-light right" type="submit" name="action">
-              <i class="material-icons right">delete</i>
+              <i class="material-icons right red-text">clear</i>
             </button>
         </form>
         </li>
@@ -19,8 +19,8 @@
 <div class="container">
 <a
   href="/users/new"
-  class="btn-floating btn-large waves-effect waves-light orange right"
-  ><i class="material-icons">person_add</i></a
+  class="btn-floating btn-large waves-effect waves-light orange right "
+  ><i class="material-icons blue-grey-text text-darken-2">person_add</i></a
 >
 </div>
 <%- include('../partials/footer') %>
