@@ -1,0 +1,19 @@
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+
+	document.addEventListener('DOMContentLoaded', function() {
+		const elems = document.querySelectorAll('.sidenav');
+    	M.Sidenav.init(elems, {});
+    });
+
+	document.addEventListener('DOMContentLoaded', function() {
+    	const datePicker = document.querySelectorAll('.datepicker');
+    	let instances = M.Datepicker.init(datePicker, {
+			autoClose: true
+		});
+  });
+
+</script>
+</body>
+</html>

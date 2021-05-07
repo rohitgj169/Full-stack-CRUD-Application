@@ -28,6 +28,10 @@ const activitySchema = new Schema({
     required: [true, "Activity needs a description"],
   },
 
+  date:{
+    type: Date,
+  },
+
   comments: [commentSchema],
 
   members: [

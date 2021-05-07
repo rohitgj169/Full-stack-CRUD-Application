@@ -20,10 +20,11 @@ const createUser = async (req, res) => {
     await newUser.save();
     res.status(201).redirect("/users");
   } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
+    res.redirect("/users");
+    // res.status(400).json({
+    //   status: "fail",
+    //   message: err,
+    // });
   }
 };
 
